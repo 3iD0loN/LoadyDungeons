@@ -1,6 +1,7 @@
 ﻿using UnityEngine;
 using System.Collections;
 using UnityEngine.UI;
+using UnityEngine.SceneManagement;
 
 public class GameManager : MonoBehaviour
 {
@@ -31,7 +32,7 @@ public class GameManager : MonoBehaviour
         s_CurrentLevel = 0;
         var gameLogoImage = GameObject.Find("Game Logo").GetComponent<Image>();
 
-        var logoResourceRequest = Resources.LoadAsync("LoadyDungeonsLogo");
+        var logoResourceRequest = Resources.LoadAsync<Sprite>("LoadyDungeonsLogo");
         logoResourceRequest.completed += (asyncOperation) =>
         {
             gameLogoImage.sprite = logoResourceRequest.asset as Sprite;
@@ -50,7 +51,7 @@ public class GameManager : MonoBehaviour
 
     public static void LoadNextLevel()
     {
-        Resources.LoadAsync("LoadingScene");
+        SceneManager.LoadSceneAsync("LoadingScene");
     }
 
     public static void LevelCompleted()

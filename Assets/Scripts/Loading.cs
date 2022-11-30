@@ -1,10 +1,10 @@
-﻿using UnityEngine;
+﻿using System.Collections;
+using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
 public class Loading : MonoBehaviour
 {
-    private ResourceRequest m_SceneResourceRequest;
     private AsyncOperation m_SceneOperation;
 
     [SerializeField]
@@ -13,38 +13,32 @@ public class Loading : MonoBehaviour
     [SerializeField]
     private GameObject m_PlayButton, m_LoadingText;
 
-    private void OnEnable()
+    private void Awake()
     {
-        m_SceneResourceRequest = Resources.LoadAsync("Level_0" + GameManager.s_CurrentLevel);
-        m_SceneResourceRequest.completed += OnSceneResourceLoaded;
+        StartCoroutine(loadNextLevel("Level_0" + GameManager.s_CurrentLevel));
     }
 
-    private void OnSceneResourceLoaded(AsyncOperation asyncOperation)
+    private IEnumerator loadNextLevel(string level)
     {
-        m_SceneResourceRequest.completed -= OnSceneResourceLoaded;
-    }
+        m_SceneOperation = SceneManager.LoadSceneAsync(level);
+        m_SceneOperation.allowSceneActivation = false;
 
-    private void OnDisable()
-    {
-        
-    }
+        while (!m_SceneOperation.isDone)
+        {
+            m_LoadingSlider.value = m_SceneOperation.progress;
 
-    private void OnSceneLoaded(AsyncOperation asyncOperation)
-    {
-        m_PlayButton.SetActive(true);
-        m_SceneOperation.completed -= OnSceneLoaded;
+            if (m_SceneOperation.progress >= 0.9f && !m_PlayButton.activeInHierarchy)
+                m_PlayButton.SetActive(true);
+
+            yield return null;
+        }
+
+        Debug.Log($"Loaded Level {level}");
     }
 
     // Function to handle which level is loaded next
     public void GoToNextLevel()
     {
-        m_SceneOperation = SceneManager.LoadSceneAsync("Level_0" + GameManager.s_CurrentLevel);
-        m_SceneOperation.completed += OnSceneLoaded;
-    }
-
-    private void Update()
-    {
-        // We don't need to check for this value every single frame, and certainly not after the scene has been loaded
-        m_LoadingSlider.value = m_SceneResourceRequest.progress;
+        m_SceneOperation.allowSceneActivation = true;
     }
 }
