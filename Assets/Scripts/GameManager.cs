@@ -66,11 +66,6 @@ public class GameManager : MonoBehaviour
 
     public static void ExitGameplay()
     {
-        Resources.LoadAsync("MainMenu");
-    }
-
-    public static void LoadStore()
-    {
-        Resources.LoadAsync("Store");
+        SceneManager.LoadSceneAsync("MainMenu");
     }
 }
