@@ -30,7 +30,7 @@ public class GameManager : MonoBehaviour
     {
         // When we go to the 
         s_CurrentLevel = 0;
-        var gameLogoImage = GameObject.Find("Game Logo").GetComponent<Image>();
+        var gameLogoImage = FindObjectOfType<GameLogoTag>().GetComponent<Image>();
 
         var logoResourceRequest = Resources.LoadAsync<Sprite>("LoadyDungeonsLogo");
         logoResourceRequest.completed += (asyncOperation) =>
