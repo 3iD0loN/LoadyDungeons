@@ -1,5 +1,4 @@
-﻿using System;
-using UnityEngine;
+﻿using UnityEngine;
 
 // Used for the Hat selection logic
 public class PlayerConfigurator : MonoBehaviour
@@ -27,6 +26,7 @@ public class PlayerConfigurator : MonoBehaviour
 
     private void OnDisable()
     {
-        m_HatLoadingRequest.completed -= OnHatLoaded;
+        if (m_HatLoadingRequest != null)
+            m_HatLoadingRequest.completed -= OnHatLoaded;
     }
 }
