@@ -10,22 +10,20 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: bbb281ee3bf0b054c82ac2347e9e782c, type: 3}
-  m_Name: Level 03
+  m_Name: Sprites
   m_EditorClassIdentifier: 
-  m_GroupName: Level 03
+  m_GroupName: Sprites
   m_Data:
     m_SerializedData: []
-  m_GUID: b218d9b8275e55943ba08ad5197d065e
+  m_GUID: dd922423bf7134f3ba509cb1d7a562e7
   m_SerializeEntries:
-  - m_GUID: 29c1d8c3070b4e441ab2c21e14128a7b
-    m_Address: Level_03
+  - m_GUID: c3a9b5d611a35464a8e473e4249a1df9
+    m_Address: Assets/Textures/UI/LoadyDungeonsLogo.png
     m_ReadOnly: 0
     m_SerializedLabels: []
-    m_MainAsset: {fileID: 102900000, guid: 29c1d8c3070b4e441ab2c21e14128a7b, type: 3}
-    m_TargetAsset: {fileID: 102900000, guid: 29c1d8c3070b4e441ab2c21e14128a7b, type: 3}
   m_ReadOnly: 0
   m_Settings: {fileID: 11400000, guid: 661d48ea9271a404cae43a9e2517e23a, type: 2}
   m_SchemaSet:
     m_Schemas:
-    - {fileID: 11400000, guid: 95a5d089fe3388a4fb216d4615badc5a, type: 2}
-    - {fileID: 11400000, guid: 12098b0589c0e854c9cf3d065189d19f, type: 2}
+    - {fileID: 11400000, guid: ce2417239a29849c4986697eba0b2822, type: 2}
+    - {fileID: 11400000, guid: 57324912791b343b2899b57f0725bf41, type: 2}
