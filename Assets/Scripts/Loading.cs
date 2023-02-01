@@ -1,44 +1,41 @@
 ﻿using System.Collections;
 using UnityEngine;
-using UnityEngine.SceneManagement;
+using UnityEngine.AddressableAssets;
+using UnityEngine.ResourceManagement.AsyncOperations;
 using UnityEngine.UI;
 
 public class Loading : MonoBehaviour
 {
-    private AsyncOperation m_SceneOperation;
-
     [SerializeField]
     private Slider m_LoadingSlider;
 
     [SerializeField]
     private GameObject m_PlayButton, m_LoadingText;
+    private AsyncOperationHandle m_SceneHandle;
 
-    private void Awake()
+    void OnEnable()
     {
-        StartCoroutine(loadNextLevel("Level_0" + GameManager.s_CurrentLevel));
+        StartCoroutine(DownloadSceneDependencies());
     }
 
-    private IEnumerator loadNextLevel(string level)
+    private IEnumerator DownloadSceneDependencies()
     {
-        m_SceneOperation = SceneManager.LoadSceneAsync(level);
-        m_SceneOperation.allowSceneActivation = false;
+        m_SceneHandle = Addressables.DownloadDependenciesAsync("Level_0" + GameManager.s_CurrentLevel);
 
-        while (!m_SceneOperation.isDone)
+        while (!m_SceneHandle.IsDone)
         {
-            m_LoadingSlider.value = m_SceneOperation.progress;
-
-            if (m_SceneOperation.progress >= 0.9f && !m_PlayButton.activeInHierarchy)
-                m_PlayButton.SetActive(true);
-
+            m_LoadingSlider.value = m_SceneHandle.GetDownloadStatus().Percent;
             yield return null;
         }
 
-        Debug.Log($"Loaded Level {level}");
+        m_LoadingSlider.value = 1;
+        m_PlayButton.SetActive(true);
+        Debug.Log("Succeeded");
     }
 
     // Function to handle which level is loaded next
     public void GoToNextLevel()
     {
-        m_SceneOperation.allowSceneActivation = true;
+        Addressables.LoadSceneAsync("Level_0" + GameManager.s_CurrentLevel);
     }
 }
