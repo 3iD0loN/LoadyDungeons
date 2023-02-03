@@ -173,6 +173,7 @@ MonoBehaviour:
     m_SubObjectType: UnityEngine.Sprite, UnityEngine.CoreModule, Version=0.0.0.0,
       Culture=neutral, PublicKeyToken=null
     m_EditorAssetChanged: 1
+  gameLogoImage: {fileID: 1402112333}
 --- !u!1 &454594787
 GameObject:
   m_ObjectHideFlags: 0

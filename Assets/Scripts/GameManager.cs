@@ -17,7 +17,7 @@ public class GameManager : MonoBehaviour
     public static int s_ActiveHat = 0;
 
     public AssetReference AssetReference;
-    private Image gameLogoImage;
+    [SerializeField] private Image gameLogoImage;
 
     public void Awake()
     {
@@ -34,7 +34,6 @@ public class GameManager : MonoBehaviour
     public void OnEnable()
     {
         s_CurrentLevel = 0;
-        gameLogoImage = FindObjectOfType<GameLogoTag>().GetComponent<Image>();
 
         AsyncOperationHandle<Sprite> asyncOperationHandle = Addressables.LoadAssetAsync<Sprite>(AssetReference);
         asyncOperationHandle.Completed += LogoOperationHandle_Completed;

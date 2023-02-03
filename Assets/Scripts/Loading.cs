@@ -15,22 +15,28 @@ public class Loading : MonoBehaviour
 
     void OnEnable()
     {
-        StartCoroutine(DownloadSceneDependencies());
+        DownloadSceneDependencies();
     }
 
-    private IEnumerator DownloadSceneDependencies()
+    private void DownloadSceneDependencies()
     {
         m_SceneHandle = Addressables.DownloadDependenciesAsync("Level_0" + GameManager.s_CurrentLevel);
+        m_SceneHandle.Completed += M_SceneHandle_Completed;
+    }
 
-        while (!m_SceneHandle.IsDone)
-        {
-            m_LoadingSlider.value = m_SceneHandle.GetDownloadStatus().Percent;
-            yield return null;
-        }
-
+    private void M_SceneHandle_Completed(AsyncOperationHandle asyncOperationHandle)
+    {
         m_LoadingSlider.value = 1;
         m_PlayButton.SetActive(true);
         Debug.Log("Succeeded");
+    }
+
+    private void Update()
+    {
+        if (!m_SceneHandle.IsDone)
+        {
+            m_LoadingSlider.value = m_SceneHandle.GetDownloadStatus().Percent;
+        }
     }
 
     // Function to handle which level is loaded next
