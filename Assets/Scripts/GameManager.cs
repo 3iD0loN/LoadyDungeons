@@ -14,6 +14,8 @@ public class GameManager : MonoBehaviour
     // The value of -1 means no hats have been purchased
     public static int s_ActiveHat = 0;
 
+    [SerializeField] private Image m_gameLogoImage;
+
     public void Awake()
     {
         if (Instance == null)
@@ -30,12 +32,11 @@ public class GameManager : MonoBehaviour
     {
         // When we go to the 
         s_CurrentLevel = 0;
-        var gameLogoImage = FindObjectOfType<GameLogoTag>().GetComponent<Image>();
 
         var logoResourceRequest = Resources.LoadAsync<Sprite>("LoadyDungeonsLogo");
         logoResourceRequest.completed += (asyncOperation) =>
         {
-            gameLogoImage.sprite = logoResourceRequest.asset as Sprite;
+            m_gameLogoImage.sprite = logoResourceRequest.asset as Sprite;
         };
     }
 
