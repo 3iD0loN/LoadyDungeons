@@ -1,72 +1,72 @@
 ﻿using UnityEngine;
 using System.Collections;
-using UnityEngine.AddressableAssets;
+using UnityEngine.UI;
+using UnityEngine.SceneManagement;
 
 public class GameManager : MonoBehaviour
 {
-	public static GameManager Instance { get; private set; }
+    public static GameManager Instance {get; private set;}
+    
+    public static int s_CurrentLevel = 0;
 
-	public static int s_CurrentLevel = 0;
+    public static int s_MaxAvailableLevel = 5;
 
-	public static int s_MaxAvailableLevel = 5;
+    // The value of -1 means no hats have been purchased
+    public static int s_ActiveHat = 0;
 
-	// The value of -1 means no hats have been purchased
-	public static int s_ActiveHat = 0;
+    [SerializeField] private Image m_gameLogoImage;
 
-	public void Awake()
-	{
-		if (Instance == null)
-		{
-			Instance = this;
-		}
-		else
-		{
-			Destroy(gameObject);
-		}
-	}
+    public void Awake()
+    {
+        if (Instance == null)
+        {
+            Instance = this;
+        }
+        else
+        {
+            Destroy(gameObject);
+        }
+    }
 
-	public void OnEnable()
-	{
-		// When we go to the 
-		s_CurrentLevel = 0;
-	}
+    public void OnEnable()
+    {
+        // When we go to the 
+        s_CurrentLevel = 0;
 
-	public void ExitGame()
-	{
-		s_CurrentLevel = 0;
-	}
+        var logoResourceRequest = Resources.LoadAsync<Sprite>("LoadyDungeonsLogo");
+        logoResourceRequest.completed += (asyncOperation) =>
+        {
+            m_gameLogoImage.sprite = logoResourceRequest.asset as Sprite;
+        };
+    }
 
-	public void SetCurrentLevel(int level)
-	{
-		s_CurrentLevel = level;
-	}
+    public void ExitGame()
+    {
+        s_CurrentLevel = 0;
+    }
 
-	public static void LoadNextLevel()
-	{
-		// We are going to be using the Addressables API to manage our scene loading and unloading, the equivalent way on the UnityEngine.SceneManagement API is:
-		// SceneManager.LoadSceneAsync("LoadingScene", LoadSceneMode.Single);
+    public void SetCurrentLevel(int level)
+    {
+        s_CurrentLevel = level;
+    }
 
-		// Scene loaded in Single mode, the previously loaded scenes will be disposed by the Addressables.
-		Addressables.LoadSceneAsync("LoadingScene", UnityEngine.SceneManagement.LoadSceneMode.Single, true);
-	}
+    public static void LoadNextLevel()
+    {
+        SceneManager.LoadSceneAsync("LoadingScene");
+    }
 
-	public static void LevelCompleted()
-	{
-		s_CurrentLevel++;
+    public static void LevelCompleted()
+    {
+        s_CurrentLevel++;
 
-		// Just to make sure we don't try to go beyond the allowed number of levels.
-		s_CurrentLevel = s_CurrentLevel % s_MaxAvailableLevel;
+        // Just to make sure we don't try to go beyond the allowed number of levels.
+        s_CurrentLevel = s_CurrentLevel % s_MaxAvailableLevel;
 
-		LoadNextLevel();
-	}
+        LoadNextLevel();
+    }
 
-	public static void ExitGameplay()
-	{
-		Addressables.LoadSceneAsync("MainMenu", UnityEngine.SceneManagement.LoadSceneMode.Single, true);
-	}
-
-	public static void LoadStore()
-	{
-		Addressables.LoadSceneAsync("Store", UnityEngine.SceneManagement.LoadSceneMode.Single, true);
-	}
+    public static void ExitGameplay()
+    {
+        SceneManager.LoadSceneAsync("MainMenu");
+    }
 }

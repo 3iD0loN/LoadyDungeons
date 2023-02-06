@@ -4,9 +4,6 @@ using UnityEngine;
 [RequireComponent(typeof(Rigidbody))]
 public class PlayerController : MonoBehaviour
 {
-    // Reference to Instace of Remote Config
-    private ApplyRemoteConfigSettings rcInstance;
-
     [SerializeField]
     private float m_MovementSpeed = 5.0f, m_CharacterSize = 1.0f;
 
@@ -30,14 +27,6 @@ public class PlayerController : MonoBehaviour
     private RaycastHit m_HitInfo;
     
     const float k_MinMovementDistance = 1.2f;
-
-    void Awake()
-    {
-        rcInstance = ApplyRemoteConfigSettings.Instance;
-        
-        SetMovementSpeed(rcInstance.characterSpeed);
-        SetCharacterSize(rcInstance.characterSize);
-    }
 
     void Start()
     {   

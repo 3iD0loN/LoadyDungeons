@@ -1,11 +1,11 @@
-﻿using UnityEngine;
-using UnityEngine.AddressableAssets;
+﻿using System.Collections;
+using UnityEngine;
+using UnityEngine.SceneManagement;
 using UnityEngine.UI;
-using UnityEngine.ResourceManagement.AsyncOperations;
 
 public class Loading : MonoBehaviour
 {
-    private AsyncOperationHandle m_SceneHandle;
+    private AsyncOperation m_SceneOperation;
 
     [SerializeField]
     private Slider m_LoadingSlider;
@@ -13,77 +13,32 @@ public class Loading : MonoBehaviour
     [SerializeField]
     private GameObject m_PlayButton, m_LoadingText;
 
-    private string language;
-
-    void OnEnable()
+    private void Awake()
     {
-        m_SceneHandle = Addressables.DownloadDependenciesAsync("Level_0" + GameManager.s_CurrentLevel);
-        m_SceneHandle.Completed += OnSceneLoaded;
+        StartCoroutine(loadNextLevel("Level_0" + GameManager.s_CurrentLevel));
     }
 
-    private void OnDisable()
+    private IEnumerator loadNextLevel(string level)
     {
-        m_SceneHandle.Completed -= OnSceneLoaded;
-    }
+        m_SceneOperation = SceneManager.LoadSceneAsync(level);
+        m_SceneOperation.allowSceneActivation = false;
 
-    private void OnSceneLoaded(AsyncOperationHandle obj)
-    {
-        // We show the UI button once the scene is successfully downloaded      
-        if(obj.Status == AsyncOperationStatus.Succeeded)
-        {  
-            language = ApplyRemoteConfigSettings.Instance.language;
+        while (!m_SceneOperation.isDone)
+        {
+            m_LoadingSlider.value = m_SceneOperation.progress;
 
-            if (language == "English")
-            {
-                m_PlayButton.GetComponentInChildren<Text>().text = "Play";
-                m_LoadingText.GetComponent<Text>().text = "Loading...";
-            }
-            else if (language == "Spanish")
-            {
-                m_PlayButton.GetComponentInChildren<Text>().text = "Jugar";
-                m_LoadingText.GetComponent<Text>().text = "Cargando...";
-            }
-            else if (language == "French")
-            {
-                m_PlayButton.GetComponentInChildren<Text>().text = "Jouer";
-                m_LoadingText.GetComponent<Text>().text = "Chargement...";
-            }
-            else if (language == "German")
-            {
-                m_PlayButton.GetComponentInChildren<Text>().text = "Abspielen";
-                m_LoadingText.GetComponent<Text>().text = "Die Beladung...";
-            }
-            
-            m_PlayButton.SetActive(true);
+            if (m_SceneOperation.progress >= 0.9f && !m_PlayButton.activeInHierarchy)
+                m_PlayButton.SetActive(true);
+
+            yield return null;
         }
+
+        Debug.Log($"Loaded Level {level}");
     }
 
     // Function to handle which level is loaded next
     public void GoToNextLevel()
     {
-        if(ApplyRemoteConfigSettings.Instance.season == "Default")
-        {
-            Addressables.LoadSceneAsync("Level_0" + GameManager.s_CurrentLevel, UnityEngine.SceneManagement.LoadSceneMode.Single, true);
-        }
-        
-        // Else If the season is supposed to be Winter
-        else if (ApplyRemoteConfigSettings.Instance.season == "Winter")
-        {
-            Debug.LogError("InsideGoToNextLevel()");
-            Addressables.LoadSceneAsync("Level_0" + "4", UnityEngine.SceneManagement.LoadSceneMode.Single, true);
-        }
-
-        // Else If the season is supposed to be Halloween
-        else if (ApplyRemoteConfigSettings.Instance.season == "Halloween")
-        {
-            Debug.LogError("InsideGoToNextLevel()");
-            Addressables.LoadSceneAsync("Level_0" + "2", UnityEngine.SceneManagement.LoadSceneMode.Single, true);
-        }
-    }
-
-    private void Update()
-    {
-        // We don't need to check for this value every single frame, and certainly not after the scene has been loaded
-        m_LoadingSlider.value = m_SceneHandle.GetDownloadStatus().Percent;
+        m_SceneOperation.allowSceneActivation = true;
     }
 }
