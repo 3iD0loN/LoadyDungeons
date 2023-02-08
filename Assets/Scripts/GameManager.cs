@@ -2,8 +2,6 @@
 using System.Collections;
 using UnityEngine.UI;
 using UnityEngine.SceneManagement;
-using UnityEngine.AddressableAssets;
-using UnityEngine.ResourceManagement.AsyncOperations;
 
 public class GameManager : MonoBehaviour
 {
@@ -16,8 +14,7 @@ public class GameManager : MonoBehaviour
     // The value of -1 means no hats have been purchased
     public static int s_ActiveHat = 0;
 
-    public AssetReference AssetReference;
-    [SerializeField] private Image gameLogoImage;
+    [SerializeField] private Image m_gameLogoImage;
 
     public void Awake()
     {
@@ -33,20 +30,14 @@ public class GameManager : MonoBehaviour
 
     public void OnEnable()
     {
+        // When we go to the 
         s_CurrentLevel = 0;
 
-        AsyncOperationHandle<Sprite> asyncOperationHandle = Addressables.LoadAssetAsync<Sprite>(AssetReference);
-        asyncOperationHandle.Completed += LogoOperationHandle_Completed;
-    }
-
-    private void LogoOperationHandle_Completed(AsyncOperationHandle<Sprite> asyncOperationHandle)
-    {
-        Debug.Log("AsyncOperationHandle Status: " + asyncOperationHandle.Status);
-
-        if (asyncOperationHandle.Status == AsyncOperationStatus.Succeeded)
+        var logoResourceRequest = Resources.LoadAsync<Sprite>("LoadyDungeonsLogo");
+        logoResourceRequest.completed += (asyncOperation) =>
         {
-            gameLogoImage.sprite = asyncOperationHandle.Result;
-        }
+            m_gameLogoImage.sprite = logoResourceRequest.asset as Sprite;
+        };
     }
 
     public void ExitGame()
@@ -61,7 +52,7 @@ public class GameManager : MonoBehaviour
 
     public static void LoadNextLevel()
     {
-        Addressables.LoadSceneAsync("LoadingScene");
+        SceneManager.LoadSceneAsync("LoadingScene");
     }
 
     public static void LevelCompleted()
@@ -76,6 +67,6 @@ public class GameManager : MonoBehaviour
 
     public static void ExitGameplay()
     {
-        Addressables.LoadSceneAsync("MainMenu");
+        SceneManager.LoadSceneAsync("MainMenu");
     }
 }
