@@ -1,4 +1,5 @@
 ﻿using UnityEngine;
+using System.Collections.Generic;
 using UnityEngine.AddressableAssets;
 using UnityEngine.ResourceManagement.AsyncOperations;
 
@@ -9,6 +10,8 @@ public class PlayerConfigurator : MonoBehaviour
 	public string Address;
 	[SerializeField]
 	private Transform m_HatAnchor;
+	private AsyncOperationHandle<GameObject> m_handle;
+
 
 	private AsyncOperationHandle m_HatLoadingHandle;
 
@@ -25,27 +28,32 @@ public class PlayerConfigurator : MonoBehaviour
 			//hatKey is an Addressable Label
 			//Debug.Log("Hat String: " + string.Format("Hat{0:00}", UnityEngine.Random.Range(0, 4)));
 		}
-
-		SetHat(Address);
+		SetHat(string.Format("Hat{0:00}", UnityEngine.Random.Range(0, 4)));
+		// SetHat(Address);
 	}
 
 	public void SetHat(string hatKey)
 	{
-
-		AsyncOperationHandle<GameObject> asyncOperationHandle = Addressables.LoadAssetAsync<GameObject>(AssetReference);
-		asyncOperationHandle.Completed += HatOperationHandle_Completed;
+		Debug.Log(hatKey);
+		m_handle = Addressables.InstantiateAsync(hatKey, m_HatAnchor);
 	}
 
-	private void HatOperationHandle_Completed(AsyncOperationHandle<GameObject> asyncOperationHandle)
-	{
-		Debug.Log("AsyncOperationHandle Status: " + asyncOperationHandle.Status);
-		Instantiate(asyncOperationHandle.Result, m_HatAnchor, false);
-	}
+	// public void SetHat(string hatKey)
+	// {
+	// 	// AsyncOperationHandle<GameObject> asyncOperationHandle = Addressables.LoadAssetAsync<GameObject>(AssetReference);
+	// 	AsyncOperationHandle<GameObject> asyncOperationHandle = Addressables.LoadAssetAsync<GameObject>(hatKey);
+	// 	asyncOperationHandle.Completed += HatOperationHandle_Completed;
+	// }
 
+	// private void HatOperationHandle_Completed(AsyncOperationHandle<GameObject> asyncOperationHandle)
+	// {
+	// 	Debug.Log("AsyncOperationHandle Status: " + asyncOperationHandle.Status);
+	// }
 
 	private void OnDisable()
 	{
 		m_HatLoadingHandle.Completed -= OnHatInstantiated;
+		Addressables.ReleaseInstance(m_handle);
 	}
 
 	private void OnHatInstantiated(AsyncOperationHandle obj)
