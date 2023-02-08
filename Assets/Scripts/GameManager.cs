@@ -1,7 +1,6 @@
 ﻿using UnityEngine;
-using System.Collections;
 using UnityEngine.UI;
-using UnityEngine.SceneManagement;
+using UnityEngine.AddressableAssets;
 
 public class GameManager : MonoBehaviour
 {
@@ -52,7 +51,7 @@ public class GameManager : MonoBehaviour
 
     public static void LoadNextLevel()
     {
-        SceneManager.LoadSceneAsync("LoadingScene");
+        Addressables.LoadSceneAsync("LoadingScene");
     }
 
     public static void LevelCompleted()
@@ -67,6 +66,6 @@ public class GameManager : MonoBehaviour
 
     public static void ExitGameplay()
     {
-        SceneManager.LoadSceneAsync("MainMenu");
+        Addressables.LoadSceneAsync("MainMenu");
     }
 }
