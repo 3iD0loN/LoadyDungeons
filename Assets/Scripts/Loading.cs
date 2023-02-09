@@ -1,44 +1,61 @@
 ﻿using System.Collections;
 using UnityEngine;
-using UnityEngine.SceneManagement;
+using UnityEngine.AddressableAssets;
+using UnityEngine.ResourceManagement.AsyncOperations;
 using UnityEngine.UI;
 
 public class Loading : MonoBehaviour
 {
-    private AsyncOperation m_SceneOperation;
+	private AsyncOperation m_SceneOperation;
+	private AsyncOperationHandle m_SceneHandle;
 
-    [SerializeField]
-    private Slider m_LoadingSlider;
 
-    [SerializeField]
-    private GameObject m_PlayButton, m_LoadingText;
+	[SerializeField]
+	private Slider m_LoadingSlider;
 
-    private void Awake()
-    {
-        StartCoroutine(loadNextLevel("Level_0" + GameManager.s_CurrentLevel));
-    }
+	[SerializeField]
+	private GameObject m_PlayButton, m_LoadingText;
 
-    private IEnumerator loadNextLevel(string level)
-    {
-        m_SceneOperation = SceneManager.LoadSceneAsync(level);
-        m_SceneOperation.allowSceneActivation = false;
+	void OnEnable()
+	{
+		DownloadSceneDependencies();
+	}
 
-        while (!m_SceneOperation.isDone)
-        {
-            m_LoadingSlider.value = m_SceneOperation.progress;
+	private void DownloadSceneDependencies()
+	{
+		m_SceneHandle = Addressables.DownloadDependenciesAsync("Level_0" + GameManager.s_CurrentLevel);
+		m_SceneHandle.Completed += M_SceneHandle_Completed;
+	}
 
-            if (m_SceneOperation.progress >= 0.9f && !m_PlayButton.activeInHierarchy)
-                m_PlayButton.SetActive(true);
+	private void M_SceneHandle_Completed(AsyncOperationHandle asyncOperationHandle)
+	{
+		m_LoadingSlider.value = 1;
+		m_PlayButton.SetActive(true);
+		Debug.Log("Succeeded");
+	}
 
-            yield return null;
-        }
+	private void Update()
+	{
+		if (!m_SceneHandle.IsDone)
+		{
+			m_LoadingSlider.value = m_SceneHandle.GetDownloadStatus().Percent;
+		}
+	}
 
-        Debug.Log($"Loaded Level {level}");
-    }
 
-    // Function to handle which level is loaded next
-    public void GoToNextLevel()
-    {
-        m_SceneOperation.allowSceneActivation = true;
-    }
+	public static void LoadNextLevel()
+	{
+		Addressables.LoadSceneAsync("LoadingScene");
+	}
+
+	public static void ExitGameplay()
+	{
+		Addressables.LoadSceneAsync("MainMenu");
+	}
+
+
+	public void GoToNextLevel()
+	{
+		Addressables.LoadSceneAsync("Level_0" + GameManager.s_CurrentLevel);
+	}
 }
