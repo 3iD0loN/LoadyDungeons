@@ -2,71 +2,81 @@
 using System.Collections;
 using UnityEngine.UI;
 using UnityEngine.SceneManagement;
+using UnityEngine.AddressableAssets;
+using UnityEngine.ResourceManagement.AsyncOperations;
 
 public class GameManager : MonoBehaviour
 {
-    public static GameManager Instance {get; private set;}
-    
-    public static int s_CurrentLevel = 0;
+	public static GameManager Instance { get; private set; }
 
-    public static int s_MaxAvailableLevel = 5;
+	public static int s_CurrentLevel = 0;
 
-    // The value of -1 means no hats have been purchased
-    public static int s_ActiveHat = 0;
+	public static int s_MaxAvailableLevel = 5;
 
-    [SerializeField] private Image m_gameLogoImage;
+	// The value of -1 means no hats have been purchased
+	public static int s_ActiveHat = 0;
 
-    public void Awake()
-    {
-        if (Instance == null)
-        {
-            Instance = this;
-        }
-        else
-        {
-            Destroy(gameObject);
-        }
-    }
+	[SerializeField] private Image m_gameLogoImage;
+	public AssetReference AssetReference;
 
-    public void OnEnable()
-    {
-        // When we go to the 
-        s_CurrentLevel = 0;
 
-        var logoResourceRequest = Resources.LoadAsync<Sprite>("LoadyDungeonsLogo");
-        logoResourceRequest.completed += (asyncOperation) =>
-        {
-            m_gameLogoImage.sprite = logoResourceRequest.asset as Sprite;
-        };
-    }
+	public void Awake()
+	{
+		if (Instance == null)
+		{
+			Instance = this;
+		}
+		else
+		{
+			Destroy(gameObject);
+		}
+	}
 
-    public void ExitGame()
-    {
-        s_CurrentLevel = 0;
-    }
+	public void OnEnable()
+	{
+		s_CurrentLevel = 0;
 
-    public void SetCurrentLevel(int level)
-    {
-        s_CurrentLevel = level;
-    }
+		AsyncOperationHandle<Sprite> asyncOperationHandle = Addressables.LoadAssetAsync<Sprite>(AssetReference);
+		asyncOperationHandle.Completed += LogoOperationHandle_Completed;
+	}
 
-    public static void LoadNextLevel()
-    {
-        SceneManager.LoadSceneAsync("LoadingScene");
-    }
+	private void LogoOperationHandle_Completed(AsyncOperationHandle<Sprite> asyncOperationHandle)
+	{
+		Debug.Log("AsyncOperationHandle Status: " + asyncOperationHandle.Status);
 
-    public static void LevelCompleted()
-    {
-        s_CurrentLevel++;
+		if (asyncOperationHandle.Status == AsyncOperationStatus.Succeeded)
+		{
+			m_gameLogoImage.sprite = asyncOperationHandle.Result;
+		}
+	}
 
-        // Just to make sure we don't try to go beyond the allowed number of levels.
-        s_CurrentLevel = s_CurrentLevel % s_MaxAvailableLevel;
+	public void ExitGame()
+	{
+		s_CurrentLevel = 0;
+	}
 
-        LoadNextLevel();
-    }
+	public void SetCurrentLevel(int level)
+	{
+		s_CurrentLevel = level;
+	}
 
-    public static void ExitGameplay()
-    {
-        SceneManager.LoadSceneAsync("MainMenu");
-    }
+	public static void LoadNextLevel()
+	{
+		SceneManager.LoadSceneAsync("LoadingScene");
+	}
+
+	public static void LevelCompleted()
+	{
+		s_CurrentLevel++;
+
+		// Just to make sure we don't try to go beyond the allowed number of levels.
+		s_CurrentLevel = s_CurrentLevel % s_MaxAvailableLevel;
+
+		LoadNextLevel();
+	}
+
+	public static void ExitGameplay()
+	{
+		SceneManager.LoadSceneAsync("MainMenu");
+	}
 }
