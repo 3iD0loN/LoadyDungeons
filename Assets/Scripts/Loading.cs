@@ -6,9 +6,7 @@ using UnityEngine.UI;
 
 public class Loading : MonoBehaviour
 {
-	private AsyncOperation m_SceneOperation;
 	private AsyncOperationHandle m_SceneHandle;
-
 
 	[SerializeField]
 	private Slider m_LoadingSlider;
@@ -19,6 +17,11 @@ public class Loading : MonoBehaviour
 	void OnEnable()
 	{
 		DownloadSceneDependencies();
+	}
+
+	private void OnDisable()
+	{
+		Addressables.Release(m_SceneHandle);
 	}
 
 	private void DownloadSceneDependencies()
@@ -41,18 +44,6 @@ public class Loading : MonoBehaviour
 			m_LoadingSlider.value = m_SceneHandle.GetDownloadStatus().Percent;
 		}
 	}
-
-
-	public static void LoadNextLevel()
-	{
-		Addressables.LoadSceneAsync("LoadingScene");
-	}
-
-	public static void ExitGameplay()
-	{
-		Addressables.LoadSceneAsync("MainMenu");
-	}
-
 
 	public void GoToNextLevel()
 	{

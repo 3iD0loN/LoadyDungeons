@@ -62,7 +62,7 @@ public class GameManager : MonoBehaviour
 
 	public static void LoadNextLevel()
 	{
-		SceneManager.LoadSceneAsync("LoadingScene");
+		Addressables.LoadSceneAsync("LoadingScene");
 	}
 
 	public static void LevelCompleted()
