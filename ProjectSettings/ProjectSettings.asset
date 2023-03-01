@@ -972,11 +972,11 @@ PlayerSettings:
   apiCompatibilityLevel: 6
   activeInputHandler: 0
   windowsGamepadBackendHint: 0
-  cloudProjectId: 6425f585-dcf3-48ce-9486-732852d3a59e
+  cloudProjectId: b6cff536-758c-4d3c-a173-ab03d925e183
   framebufferDepthMemorylessMode: 0
   qualitySettingsNames: []
-  projectName: Loady Dungeons Game
-  organizationId: unity-evangelists
+  projectName: LoadyDungeons
+  organizationId: unity_3a3995c32c78b012093c
   cloudEnabled: 0
   legacyClampBlendShapeWeights: 0
   hmiLoadingImage: {fileID: 0}
