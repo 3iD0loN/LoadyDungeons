@@ -93,6 +93,9 @@ MonoBehaviour:
     - default
     - Fancy
     - Seasonal
+    - Test
+    - ILikeLevels
+    - ILikeHats
   m_SchemaTemplates: []
   m_GroupTemplateObjects:
   - {fileID: 11400000, guid: 1d1693210bed54b4b86ceac5c2c61bba, type: 2}
@@ -100,12 +103,13 @@ MonoBehaviour:
   m_CertificateHandlerType:
     m_AssemblyName: 
     m_ClassName: 
-  m_ActivePlayerDataBuilderIndex: 3
+  m_ActivePlayerDataBuilderIndex: 4
   m_DataBuilders:
   - {fileID: 11400000, guid: 8f326604321db4f1699f07a4e95e1415, type: 2}
   - {fileID: 11400000, guid: e777a38e9aa2642e681d119b1e9a9b14, type: 2}
   - {fileID: 11400000, guid: ee4b810d50c714630af0a6400c0d98d9, type: 2}
   - {fileID: 11400000, guid: 415d38d2113c14a17a698fe4a18913b8, type: 2}
+  - {fileID: 11400000, guid: 498d157062a5f1f47b4fd637db639c69, type: 2}
   m_ActiveProfileId: e61e14feb51b6439c901f3bacb470aa4
   m_HostingServicesManager:
     m_HostingServiceInfos:
