@@ -9,7 +9,7 @@ public class AddOrRemoveLabelsBuildScript : BuildScriptPackedMode
 {
     [Header("Add or Remove Labels")]
     [Tooltip("If set to true, labels will be added, otherwise labels will be removed")]
-    [SerializeField] private bool shouldAddLabels = true;
+    [SerializeField] private bool m_shouldAddLabels = true;
 
     [Tooltip("Addressable group names in your Addressables Groups window")]
     [SerializeField] private string[] m_groupNames;
@@ -28,7 +28,7 @@ public class AddOrRemoveLabelsBuildScript : BuildScriptPackedMode
         {
             if (labels.Count != 0 && !labels.Contains(label))
             {
-                if (shouldAddLabels)
+                if (m_shouldAddLabels)
                 {
                     addressableSettings.AddLabel(label);
                 }
@@ -51,7 +51,7 @@ public class AddOrRemoveLabelsBuildScript : BuildScriptPackedMode
         {
             foreach (var label in m_customLabels)
             {
-                if (!entry.labels.Contains(label) && shouldAddLabels)
+                if (!entry.labels.Contains(label) && m_shouldAddLabels)
                 {
                     entry.SetLabel(label, true);
                 }else
