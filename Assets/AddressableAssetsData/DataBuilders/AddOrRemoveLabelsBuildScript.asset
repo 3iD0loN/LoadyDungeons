@@ -18,8 +18,8 @@ MonoBehaviour:
   sceneProviderType:
     m_AssemblyName: Unity.ResourceManager, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
     m_ClassName: UnityEngine.ResourceManagement.ResourceProviders.SceneProvider
-  shouldAddLabels: 1
+  m_shouldAddLabels: 0
   m_groupNames:
   - Hats
   m_customLabels:
-  - ILikeHats
+  - MyCustomLabel

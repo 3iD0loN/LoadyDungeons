@@ -93,9 +93,6 @@ MonoBehaviour:
     - default
     - Fancy
     - Seasonal
-    - Test
-    - ILikeLevels
-    - ILikeHats
   m_SchemaTemplates: []
   m_GroupTemplateObjects:
   - {fileID: 11400000, guid: 1d1693210bed54b4b86ceac5c2c61bba, type: 2}

@@ -24,18 +24,18 @@ public class AddOrRemoveLabelsBuildScript : BuildScriptPackedMode
         AddressableAssetSettings addressableSettings = builderInput.AddressableSettings;
         List<string> labels = addressableSettings.GetLabels();
 
-        foreach (var label in m_customLabels)
+        foreach (string label in m_customLabels)
         {
-            if (labels.Count != 0 && !labels.Contains(label))
+            if (labels.Contains(label))
+                continue;
+
+            if (m_shouldAddLabels)
             {
-                if (m_shouldAddLabels)
-                {
-                    addressableSettings.AddLabel(label);
-                }
-                else
-                {
-                    addressableSettings.RemoveLabel(label);
-                }
+                addressableSettings.AddLabel(label);
+            }
+            else
+            {
+                addressableSettings.RemoveLabel(label);
             }
         }
 
@@ -47,14 +47,16 @@ public class AddOrRemoveLabelsBuildScript : BuildScriptPackedMode
         if (!ContainsGroupName(assetGroup.name) || (m_customLabels.Length == 0))
             return base.ProcessGroup(assetGroup, aaContext);
 
-        foreach (var entry in assetGroup.entries)
+        foreach (AddressableAssetEntry entry in assetGroup.entries)
         {
-            foreach (var label in m_customLabels)
+            foreach (string label in m_customLabels)
             {
-                if (!entry.labels.Contains(label) && m_shouldAddLabels)
+                bool doesHaveLabel = entry.labels.Contains(label);
+                if (!doesHaveLabel && m_shouldAddLabels)
                 {
                     entry.SetLabel(label, true);
-                }else
+                }
+                else if(doesHaveLabel && !m_shouldAddLabels)
                 {
                     entry.SetLabel(label, false);
                 }
