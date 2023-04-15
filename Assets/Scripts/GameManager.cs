@@ -1,6 +1,9 @@
 ﻿using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.SceneManagement;
+using UnityEngine.AddressableAssets;
+using UnityEngine.ResourceManagement.AsyncOperations;
+using UnityEngine.ResourceManagement.ResourceProviders;
 
 public class GameManager : MonoBehaviour
 {
@@ -14,6 +17,13 @@ public class GameManager : MonoBehaviour
     public static int s_ActiveHat = 0;
 
     [SerializeField] private Image m_gameLogoImage;
+
+    [SerializeField]
+    private AssetReferenceSprite m_LogoAssetReference;
+
+    private AsyncOperationHandle<Sprite> m_LogoLoadOpHandle;
+
+    private static AsyncOperationHandle<SceneInstance> m_SceneLoadOpHandle;
 
     public void Awake()
     {
@@ -32,12 +42,23 @@ public class GameManager : MonoBehaviour
         // When we go to the 
         s_CurrentLevel = 0;
 
-        var logoResourceRequest = Resources.LoadAsync<Sprite>("LoadyDungeonsLogo");
-        logoResourceRequest.completed += (asyncOperation) =>
+        if (!m_LogoAssetReference.RuntimeKeyIsValid())
         {
-            m_gameLogoImage.sprite = logoResourceRequest.asset as Sprite;
-        };
+            return;
+        }
+
+        m_LogoLoadOpHandle = Addressables.LoadAssetAsync<Sprite>(m_LogoAssetReference);
+        m_LogoLoadOpHandle.Completed += OnLogoLoadComplete;
     }
+
+    private void OnLogoLoadComplete(AsyncOperationHandle<Sprite> asyncOperationHandle)
+    {
+        if (asyncOperationHandle.Status == AsyncOperationStatus.Succeeded)
+        {
+            m_gameLogoImage.sprite = asyncOperationHandle.Result;
+        }
+    }
+
 
     public void ExitGame()
     {
@@ -51,7 +72,7 @@ public class GameManager : MonoBehaviour
 
     public static void LoadNextLevel()
     {
-        SceneManager.LoadSceneAsync("LoadingScene");
+        m_SceneLoadOpHandle = Addressables.LoadSceneAsync("LoadingScene");
     }
 
     public static void LevelCompleted()
