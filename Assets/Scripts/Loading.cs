@@ -8,15 +8,13 @@ using UnityEngine.ResourceManagement.ResourceProviders;
 
 public class Loading : MonoBehaviour
 {
-    private AsyncOperation m_SceneOperation;
+    private static AsyncOperationHandle<SceneInstance> m_SceneLoadOpHandle;
 
     [SerializeField]
     private Slider m_LoadingSlider;
 
     [SerializeField]
     private GameObject m_PlayButton, m_LoadingText;
-
-    private static AsyncOperationHandle<SceneInstance> m_SceneLoadOpHandle;
 
     private void Awake()
     {
@@ -25,7 +23,7 @@ public class Loading : MonoBehaviour
 
     private IEnumerator loadNextLevel(string level)
     {
-        m_SceneLoadOpHandle = Addressables.LoadSceneAsync(level);
+        m_SceneLoadOpHandle = Addressables.LoadSceneAsync(level, activateOnLoad: true);
 
         while (!m_SceneLoadOpHandle.IsDone)
         {
