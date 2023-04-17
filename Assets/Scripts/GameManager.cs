@@ -16,14 +16,14 @@ public class GameManager : MonoBehaviour
     // The value of -1 means no hats have been purchased
     public static int s_ActiveHat = 0;
 
-    [SerializeField] private Image m_gameLogoImage;
-
     [SerializeField]
     private AssetReferenceSprite m_LogoAssetReference;
 
     private AsyncOperationHandle<Sprite> m_LogoLoadOpHandle;
 
     private static AsyncOperationHandle<SceneInstance> m_SceneLoadOpHandle;
+
+    [SerializeField] private Image m_gameLogoImage;
 
     public void Awake()
     {
@@ -58,7 +58,6 @@ public class GameManager : MonoBehaviour
             m_gameLogoImage.sprite = asyncOperationHandle.Result;
         }
     }
-
 
     public void ExitGame()
     {
