@@ -9,7 +9,7 @@ public class PlayerConfigurator : MonoBehaviour
     [SerializeField]
     private Transform m_HatAnchor;
 
-    private List<string> m_Keys = new List<string>() { "Hats" };
+    private List<string> m_Keys = new List<string>() { "Hats", "Seasonal" };
 
     private AsyncOperationHandle<IList<GameObject>> m_HatsLoadOpHandle;
 
@@ -17,7 +17,7 @@ public class PlayerConfigurator : MonoBehaviour
 
     void Start()
     {
-        m_HatsLoadOpHandle = Addressables.LoadAssetsAsync<GameObject>(m_Keys, null, Addressables.MergeMode.Union);
+        m_HatsLoadOpHandle = Addressables.LoadAssetsAsync<GameObject>(m_Keys, null, Addressables.MergeMode.Intersection);
         m_HatsLoadOpHandle.Completed += OnHatsLoadComplete;
     }
 
