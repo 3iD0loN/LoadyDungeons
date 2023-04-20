@@ -49,14 +49,16 @@ public class PlayerConfigurator : MonoBehaviour
         m_HatLoadOpHandle.Completed += OnHatLoadComplete;
     }
 
+
     private void Update()
     {
         if (Input.GetMouseButtonUp(1))
         {
             Destroy(m_HatInstance);
 
-            LoadInRandomHat(m_HatsLoadOpHandle.Result);
+            Addressables.Release(m_HatLoadOpHandle);
 
+            LoadInRandomHat(m_HatsLocationsOpHandle.Result);
         }
     }
 
@@ -72,5 +74,6 @@ public class PlayerConfigurator : MonoBehaviour
     private void OnDisable()
     {
         m_HatLoadOpHandle.Completed -= OnHatLoadComplete;
+        m_HatsLocationsOpHandle.Completed -= OnHatLocationsLoadComplete;
     }
 }
