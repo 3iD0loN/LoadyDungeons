@@ -38,7 +38,7 @@ MonoBehaviour:
     m_Id: 
   m_RemoteCatalogLoadPath:
     m_Id: 
-  m_ContentStateBuildPathProfileVariableName: 
+  m_ContentStateBuildPathProfileVariableName: <default settings path>
   m_CustomContentStateBuildPath: 
   m_ContentStateBuildPath: 
   m_BuildAddressablesWithPlayerBuild: 0
@@ -46,6 +46,9 @@ MonoBehaviour:
   m_GroupAssets:
   - {fileID: 11400000, guid: 34a2e89309d26ac43beaff59a6fbc8b9, type: 2}
   - {fileID: 11400000, guid: 5ab2d7d52d7c39e4aa5b4d24ec7e705b, type: 2}
+  - {fileID: 11400000, guid: 71fe1b8980b223e4aa0076518b3720e7, type: 2}
+  - {fileID: 11400000, guid: dfc37008d5df59f4c8264deeadbd94ff, type: 2}
+  - {fileID: 11400000, guid: 9ff2e5cbd7c63d94a9206c70709ca124, type: 2}
   m_BuildSettings:
     m_CompileScriptsInVirtualMode: 0
     m_CleanupStreamingAssetsAfterBuilds: 1
@@ -143,6 +146,7 @@ MonoBehaviour:
   m_SchemaTemplates: []
   m_GroupTemplateObjects:
   - {fileID: 11400000, guid: d1647d803b29da54582c65fed508d33f, type: 2}
+  - {fileID: 11400000, guid: 78087e1d04760da4caa8658f0192cf91, type: 2}
   m_InitializationObjects: []
   m_CertificateHandlerType:
     m_AssemblyName: 
