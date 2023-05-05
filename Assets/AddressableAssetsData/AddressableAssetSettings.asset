@@ -15,7 +15,7 @@ MonoBehaviour:
   m_DefaultGroup: c3944351af908614e985bea57b0ccdef
   m_currentHash:
     serializedVersion: 2
-    Hash: 5a2296c89a86591dbfa7e14a57bf07e5
+    Hash: 00000000000000000000000000000000
   m_OptimizeCatalogSize: 0
   m_BuildRemoteCatalog: 1
   m_BundleLocalCatalog: 0
@@ -24,7 +24,7 @@ MonoBehaviour:
   m_IgnoreUnsupportedFilesInBuild: 0
   m_UniqueBundleIds: 0
   m_NonRecursiveBuilding: 1
-  m_CCDEnabled: 0
+  m_CCDEnabled: 1
   m_maxConcurrentWebRequests: 3
   m_ContiguousBundles: 1
   m_StripUnityVersionFromBundleBuild: 0
@@ -33,11 +33,12 @@ MonoBehaviour:
   m_ShaderBundleCustomNaming: 
   m_MonoScriptBundleNaming: 0
   m_CheckForContentUpdateRestrictionsOption: 0
+  m_BuildAndReleaseBinFileOption: 0
   m_MonoScriptBundleCustomNaming: 
   m_RemoteCatalogBuildPath:
-    m_Id: 
+    m_Id: e0a9d82ccb7d6324da4f1cb97e9882ea
   m_RemoteCatalogLoadPath:
-    m_Id: 
+    m_Id: 14bdfa07469a957498e4958537549caf
   m_ContentStateBuildPathProfileVariableName: <default settings path>
   m_CustomContentStateBuildPath: 
   m_ContentStateBuildPath: 
@@ -66,8 +67,6 @@ MonoBehaviour:
         m_Value: '[UnityEngine.AddressableAssets.Addressables.BuildPath]/[BuildTarget]'
       - m_Id: 5f40f5369595fb84c87cef1e5d22a243
         m_Value: '{UnityEngine.AddressableAssets.Addressables.RuntimePath}/[BuildTarget]'
-      - m_Id: 2134cfaf0f37eec40b7f5b1da4938802
-        m_Value: http://192.168.86.1
       - m_Id: e0a9d82ccb7d6324da4f1cb97e9882ea
         m_Value: ServerData/[BuildTarget]
       - m_Id: 14bdfa07469a957498e4958537549caf
@@ -82,12 +81,10 @@ MonoBehaviour:
         m_Value: '[UnityEngine.AddressableAssets.Addressables.BuildPath]/[BuildTarget]'
       - m_Id: 5f40f5369595fb84c87cef1e5d22a243
         m_Value: '{UnityEngine.AddressableAssets.Addressables.RuntimePath}/[BuildTarget]'
-      - m_Id: 2134cfaf0f37eec40b7f5b1da4938802
-        m_Value: http://192.168.86.1
       - m_Id: e0a9d82ccb7d6324da4f1cb97e9882ea
-        m_Value: here
+        m_Value: CCDBuildData/ca96d992-9276-4a7b-ad68-d505bdc30967/899085d3-7de5-431e-817b-f37250cd8bed/latest
       - m_Id: 14bdfa07469a957498e4958537549caf
-        m_Value: there
+        m_Value: https://8fd2e68c-6139-401a-822c-b498280f517e.client-api.unity3dusercontent.com/client_api/v1/environments/development/buckets/899085d3-7de5-431e-817b-f37250cd8bed/release_by_badge/latest/entry_by_path/content/?path=
     - m_InheritedParent: 
       m_Id: f900ed276cea7f84693b4809dc35a94e
       m_ProfileName: Test
@@ -98,12 +95,10 @@ MonoBehaviour:
         m_Value: '[UnityEngine.AddressableAssets.Addressables.BuildPath]/[BuildTarget]'
       - m_Id: 5f40f5369595fb84c87cef1e5d22a243
         m_Value: '{UnityEngine.AddressableAssets.Addressables.RuntimePath}/[BuildTarget]'
-      - m_Id: 2134cfaf0f37eec40b7f5b1da4938802
-        m_Value: http://192.168.86.1
       - m_Id: e0a9d82ccb7d6324da4f1cb97e9882ea
-        m_Value: here
+        m_Value: CCDBuildData/9f2b9bd8-8d17-4a11-a9f9-7fd59bbec139/92ea124b-7a59-45d6-80ff-e7d5bc7a30c8/latest
       - m_Id: 14bdfa07469a957498e4958537549caf
-        m_Value: there
+        m_Value: https://8fd2e68c-6139-401a-822c-b498280f517e.client-api.unity3dusercontent.com/client_api/v1/environments/test/buckets/92ea124b-7a59-45d6-80ff-e7d5bc7a30c8/release_by_badge/latest/entry_by_path/content/?path=
     - m_InheritedParent: 
       m_Id: e4c998094bb842f408c8f655987d554d
       m_ProfileName: Production
@@ -114,12 +109,10 @@ MonoBehaviour:
         m_Value: '[UnityEngine.AddressableAssets.Addressables.BuildPath]/[BuildTarget]'
       - m_Id: 5f40f5369595fb84c87cef1e5d22a243
         m_Value: '{UnityEngine.AddressableAssets.Addressables.RuntimePath}/[BuildTarget]'
-      - m_Id: 2134cfaf0f37eec40b7f5b1da4938802
-        m_Value: http://192.168.86.1
       - m_Id: e0a9d82ccb7d6324da4f1cb97e9882ea
-        m_Value: here
+        m_Value: CCDBuildData/252c3681-024c-4275-b004-64fb1cd9bfcb/7a3cea1f-55a8-4fef-9195-e1f046f35199/latest
       - m_Id: 14bdfa07469a957498e4958537549caf
-        m_Value: there
+        m_Value: https://8fd2e68c-6139-401a-822c-b498280f517e.client-api.unity3dusercontent.com/client_api/v1/environments/production/buckets/7a3cea1f-55a8-4fef-9195-e1f046f35199/release_by_badge/latest/entry_by_path/content/?path=
     m_ProfileEntryNames:
     - m_Id: 9bc2c99fe33255d4b9703d1fa123f29c
       m_Name: BuildTarget
@@ -129,9 +122,6 @@ MonoBehaviour:
       m_InlineUsage: 0
     - m_Id: 5f40f5369595fb84c87cef1e5d22a243
       m_Name: Local.LoadPath
-      m_InlineUsage: 0
-    - m_Id: 2134cfaf0f37eec40b7f5b1da4938802
-      m_Name: RemoteHost
       m_InlineUsage: 0
     - m_Id: e0a9d82ccb7d6324da4f1cb97e9882ea
       m_Name: Remote.BuildPath
@@ -177,7 +167,7 @@ MonoBehaviour:
           m_Key: HostingServiceUploadSpeed
         - m_AssemblyName: mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089
           m_ClassName: System.String
-          m_Data: Library/com.unity.addressables/aa/Windows/StandaloneWindows64;here
+          m_Data: Library/com.unity.addressables/aa/Windows/StandaloneWindows64;CCDBuildData/ca96d992-9276-4a7b-ad68-d505bdc30967/899085d3-7de5-431e-817b-f37250cd8bed/latest
           m_Key: ContentRoot
         - m_AssemblyName: mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089
           m_ClassName: System.Boolean
@@ -196,3 +186,9 @@ MonoBehaviour:
     m_RegisteredServiceTypeRefs:
     - UnityEditor.AddressableAssets.HostingServices.HttpHostingService, Unity.Addressables.Editor
     m_PingTimeoutInMilliseconds: 5000
+  m_CcdManagedData:
+    EnvironmentId: 
+    EnvironmentName: 
+    BucketId: 
+    Badge: 
+    State: 0
