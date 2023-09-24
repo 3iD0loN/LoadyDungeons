@@ -23,7 +23,7 @@ public class PlayerConfigurator : MonoBehaviour
         m_HatsLocationsOpHandle = Addressables.LoadResourceLocationsAsync(m_Keys, Addressables.MergeMode.Intersection);
         m_HatsLocationsOpHandle.Completed += OnHatLocationsLoadComplete;
     }
-
+    
     private void OnHatLocationsLoadComplete(AsyncOperationHandle<IList<IResourceLocation>> asyncOperationHandle)
     {
         Debug.Log("AsyncOperationHandle Status: " + asyncOperationHandle.Status);
@@ -39,7 +39,7 @@ public class PlayerConfigurator : MonoBehaviour
             LoadInRandomHat(results);
         }
     }
-
+    
     private void LoadInRandomHat(IList<IResourceLocation> resourceLocations)
     {
         int randomIndex = Random.Range(0, resourceLocations.Count);
@@ -55,11 +55,13 @@ public class PlayerConfigurator : MonoBehaviour
         {
             Destroy(m_HatInstance);
 
-            LoadInRandomHat(m_HatsLoadOpHandle.Result);
+            Addressables.Release(m_HatLoadOpHandle);
+
+            LoadInRandomHat(m_HatsLocationsOpHandle.Result);
 
         }
     }
-
+    
     private void OnHatLoadComplete(AsyncOperationHandle<GameObject> asyncOperationHandle)
     {
         if (asyncOperationHandle.Status == AsyncOperationStatus.Succeeded)
@@ -68,9 +70,9 @@ public class PlayerConfigurator : MonoBehaviour
         }
     }
 
-
     private void OnDisable()
     {
         m_HatLoadOpHandle.Completed -= OnHatLoadComplete;
+        m_HatsLocationsOpHandle.Completed -= OnHatLocationsLoadComplete;
     }
 }
