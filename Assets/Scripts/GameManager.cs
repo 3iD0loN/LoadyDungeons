@@ -71,7 +71,7 @@ public class GameManager : MonoBehaviour
 
     public static void LoadNextLevel()
     {
-        m_SceneLoadOpHandle = Addressables.LoadSceneAsync("LoadingScene");
+        m_SceneLoadOpHandle = Addressables.LoadSceneAsync("LoadingScene", activateOnLoad: true);
     }
 
     public static void LevelCompleted()
