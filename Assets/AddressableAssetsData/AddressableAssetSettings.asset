@@ -67,11 +67,11 @@ MonoBehaviour:
       - m_Id: 5f40f5369595fb84c87cef1e5d22a243
         m_Value: '{UnityEngine.AddressableAssets.Addressables.RuntimePath}/[BuildTarget]'
       - m_Id: 2134cfaf0f37eec40b7f5b1da4938802
-        m_Value: http://192.168.86.1
+        m_Value: DEFAULT
       - m_Id: e0a9d82ccb7d6324da4f1cb97e9882ea
-        m_Value: here
+        m_Value: ServerData/[BuildTarget]
       - m_Id: 14bdfa07469a957498e4958537549caf
-        m_Value: there
+        m_Value: https://unity.com/{UnityEditor.PlayerSettings.productName}/[RemoteHost]_[BuildTarget]
     - m_InheritedParent: 
       m_Id: 6abea06428159614b92dfff257b1cd5d
       m_ProfileName: Development
@@ -83,11 +83,11 @@ MonoBehaviour:
       - m_Id: 5f40f5369595fb84c87cef1e5d22a243
         m_Value: '{UnityEngine.AddressableAssets.Addressables.RuntimePath}/[BuildTarget]'
       - m_Id: 2134cfaf0f37eec40b7f5b1da4938802
-        m_Value: http://192.168.86.1
+        m_Value: DEV
       - m_Id: e0a9d82ccb7d6324da4f1cb97e9882ea
-        m_Value: here
+        m_Value: ServerData/[BuildTarget]
       - m_Id: 14bdfa07469a957498e4958537549caf
-        m_Value: there
+        m_Value: https://unity.com/{UnityEditor.PlayerSettings.productName}/[RemoteHost]_[BuildTarget]
     - m_InheritedParent: 
       m_Id: f900ed276cea7f84693b4809dc35a94e
       m_ProfileName: Test
@@ -99,11 +99,11 @@ MonoBehaviour:
       - m_Id: 5f40f5369595fb84c87cef1e5d22a243
         m_Value: '{UnityEngine.AddressableAssets.Addressables.RuntimePath}/[BuildTarget]'
       - m_Id: 2134cfaf0f37eec40b7f5b1da4938802
-        m_Value: http://192.168.86.1
+        m_Value: QA
       - m_Id: e0a9d82ccb7d6324da4f1cb97e9882ea
-        m_Value: here
+        m_Value: ServerData/[BuildTarget]
       - m_Id: 14bdfa07469a957498e4958537549caf
-        m_Value: there
+        m_Value: https://unity.com/{UnityEditor.PlayerSettings.productName}/[RemoteHost]_[BuildTarget]
     - m_InheritedParent: 
       m_Id: e4c998094bb842f408c8f655987d554d
       m_ProfileName: Production
@@ -115,11 +115,11 @@ MonoBehaviour:
       - m_Id: 5f40f5369595fb84c87cef1e5d22a243
         m_Value: '{UnityEngine.AddressableAssets.Addressables.RuntimePath}/[BuildTarget]'
       - m_Id: 2134cfaf0f37eec40b7f5b1da4938802
-        m_Value: http://192.168.86.1
+        m_Value: PROD
       - m_Id: e0a9d82ccb7d6324da4f1cb97e9882ea
-        m_Value: here
+        m_Value: ServerData/[BuildTarget]
       - m_Id: 14bdfa07469a957498e4958537549caf
-        m_Value: there
+        m_Value: https://unity.com/{UnityEditor.PlayerSettings.productName}/[RemoteHost]_[BuildTarget]
     m_ProfileEntryNames:
     - m_Id: 9bc2c99fe33255d4b9703d1fa123f29c
       m_Name: BuildTarget
