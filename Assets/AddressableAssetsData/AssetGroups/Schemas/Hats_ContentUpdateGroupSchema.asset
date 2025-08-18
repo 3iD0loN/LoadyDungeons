@@ -13,4 +13,4 @@ MonoBehaviour:
   m_Name: Hats_ContentUpdateGroupSchema
   m_EditorClassIdentifier: 
   m_Group: {fileID: 11400000, guid: 9ff2e5cbd7c63d94a9206c70709ca124, type: 2}
-  m_StaticContent: 0
+  m_StaticContent: 1

@@ -1,0 +1,39 @@
+{
+  "name": "com.unity.graphtoolkit",
+  "displayName": "Graph Toolkit",
+  "version": "0.2.0-exp.1",
+  "unity": "6000.2",
+  "unityRelease": "0a9",
+  "description": "The Graph Toolkit package provides a comprehensive set of APIs that developers can use to create graph editing tools. This framework allows you to create tailored, node-based workflows. It handles the foundational basics so you can spend less time on setup and more time building graph solutions.\n\nBy default any graph tools built with this package conform to Unity UI and UX standards, ensuring consistency and quality. However, there is also lots of room for customization to fit the needs of unique projects.",
+  "dependencies": {
+    "com.unity.modules.uielements": "1.0.0"
+  },
+  "relatedPackages": {
+    "com.unity.graphtoolkit.tests": "0.2.0-exp.1"
+  },
+  "_upm": {
+    "changelog": "### Added\n* Set default shortcut to Create Sticky Note: `` Alt + ` ``.\n* Set default shortcut for converting Variable node to Constant node (and vice-versa): `Ctrl + Shift + T`.\n\n### Changed\n* [Breaking] Inverted logic for `GraphOptions.AutoIncludeNodesFromGraphAssembly` (used as [Flags]). It's now `GraphOptions.DisableAutoInclusionOfNodesFromGraphAssembly` with the default value set to false instead of true. This prevents unintentionally clearing the flag when setting other flags, as it no longer defaults to 1. Update existing usages to explicitly include this flag if needed.\n* Importing samples will now check for any missing package dependencies and prompt the user to install them if necessary.\n* Reduced padding around visual elements in the Blackboard.\n\n### Fixed\n* Fixed the documentation page `Implement node options` where two parameters within `OnDefinePorts()` in one of the code snippets were inverted: `\"Port Count\"` and `k_PortCountName`.\n* Fixed an issue where tab navigation did not work correctly within ContextNodes. Focus now moves sequentially through all visible fields.\n* Fixed a visual artifact that appeared when hovering over a Sticky Note with an empty title.\n* Fixed missing shortcut indicators for some actions in the Canvas context menu.\n* Fixed variable names and colors not displaying correctly on variable instances when reloading the window (applies to Unity 6000.2.0b12 and later).\n* Fixed missing visual cue (disc inside the circle) on ports when hovered by the cursor (applies to Unity 6000.2.0b12 and later).\n* Fixed a UI issue with option-less and port-less nodes would be shrunk and not display its title (applies to Unity 6000.2.0b12 and later).\n\n### Removed\n* Removed the Tooltip field from the Variable quick access settings in the Blackboard panel."
+  },
+  "upmCi": {
+    "footprint": "f144712e9052a0916b27fd4cdad6ca646658696c"
+  },
+  "documentationUrl": "https://docs.unity3d.com/Packages/com.unity.graphtoolkit@0.2/manual/index.html",
+  "repository": {
+    "url": "https://github.cds.internal.unity3d.com/unity/com.unity.motion.git",
+    "type": "git",
+    "revision": "2b68f7f49eba0ea19f19f9461dc6abcef10835b0"
+  },
+  "samples": [
+    {
+      "displayName": "TextureMaker Sample",
+      "description": "A sample illustrating how to create a graph tool with basic texture generation",
+      "path": "Samples~/TextureMaker"
+    },
+    {
+      "displayName": "VisualNovelDirector Sample",
+      "description": "This sample describes how to use Graph Toolkit with a custom runtime.",
+      "path": "Samples~/VisualNovelDirector"
+    }
+  ],
+  "_fingerprint": "36d65f0af51005f187f2c7c78889186c060f9872"
+}
