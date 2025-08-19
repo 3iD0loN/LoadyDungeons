@@ -15,16 +15,15 @@ MonoBehaviour:
   m_GroupName: Local Scenes
   m_Data:
     m_SerializedData: []
-  m_GUID: bbd54c9f40478734e8f2ca78aa5eb931
+  m_GUID: 5e9af6e01ff39ed4596275ca0c7e144d
   m_SerializeEntries:
   - m_GUID: a1e01d398699cc940a960600837600bd
     m_Address: LoadingScene
     m_ReadOnly: 0
     m_SerializedLabels: []
-    FlaggedDuringContentUpdateRestriction: 0
   m_ReadOnly: 0
-  m_Settings: {fileID: 11400000, guid: c0b4edf2c8641a1429159274e70bf9fb, type: 2}
+  m_Settings: {fileID: 11400000, guid: 2fa549c4e9a31a24f94a154ccb2f3a9b, type: 2}
   m_SchemaSet:
     m_Schemas:
-    - {fileID: 11400000, guid: e6b4106d45306d648b2c2431e54a2136, type: 2}
-    - {fileID: 11400000, guid: 85ef1c4b04127f049996be19c4aaab96, type: 2}
+    - {fileID: 11400000, guid: 05d8f0d5db011c940a7e4815d768d92a, type: 2}
+    - {fileID: 11400000, guid: 5aaa2ca2022409b4bbb746af53ca242d, type: 2}

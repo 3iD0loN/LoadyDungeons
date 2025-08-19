@@ -15,16 +15,15 @@ MonoBehaviour:
   m_GroupName: Default Local Group
   m_Data:
     m_SerializedData: []
-  m_GUID: c3944351af908614e985bea57b0ccdef
+  m_GUID: 547e51e5b5008424c87a5be69e3aa650
   m_SerializeEntries:
   - m_GUID: c3a9b5d611a35464a8e473e4249a1df9
     m_Address: LoadyDungeonsLogo
     m_ReadOnly: 0
     m_SerializedLabels: []
-    FlaggedDuringContentUpdateRestriction: 0
   m_ReadOnly: 0
-  m_Settings: {fileID: 11400000, guid: c0b4edf2c8641a1429159274e70bf9fb, type: 2}
+  m_Settings: {fileID: 11400000, guid: 2fa549c4e9a31a24f94a154ccb2f3a9b, type: 2}
   m_SchemaSet:
     m_Schemas:
-    - {fileID: 11400000, guid: 57b5fa491ce3fc64cac53a5c5e9b0c17, type: 2}
-    - {fileID: 11400000, guid: 3219b1c0b7398ba4f82f10ed5beaec2f, type: 2}
+    - {fileID: 11400000, guid: 5b591b01e3c1b9f4bbd8a39456d94d91, type: 2}
+    - {fileID: 11400000, guid: 893e638607e80c6459efe93d39b1cee1, type: 2}
